@@ -1,0 +1,207 @@
+/* Офлайн-кэш виртуальной лаборатории. При каждом релизе меняйте CACHE и APP_VERSION в config.js.
+   CORE — все файлы приложения, работ и панели (тест tests/sw.test.js проверяет, что список полный). */
+const CACHE = 'vlab-v1.0.12';
+const CORE = [
+  "./",
+  "index.html",
+  "config.js",
+  "manifest.webmanifest",
+  "icon.svg",
+  "icon-192.png",
+  "icon-512.png",
+  "app/api.js",
+  "app/dom.js",
+  "app/engine.js",
+  "app/equipment.js",
+  "app/fastapi.js",
+  "app/grading.js",
+  "app/i18n.js",
+  "app/instruments/balance.js",
+  "app/instruments/glassware.js",
+  "app/instruments/indicator.js",
+  "app/instruments/mp.js",
+  "app/instruments/polarimeter.js",
+  "app/instruments/thermal.js",
+  "app/main.js",
+  "app/preview.js",
+  "app/report.js",
+  "app/rng.js",
+  "app/scene/bench.js",
+  "app/scene/svg.js",
+  "app/steps/_common.js",
+  "app/steps/add.js",
+  "app/steps/assemble.js",
+  "app/steps/calc.js",
+  "app/steps/checklist.js",
+  "app/steps/cleanup.js",
+  "app/steps/decide.js",
+  "app/steps/index.js",
+  "app/steps/measure.js",
+  "app/steps/observe.js",
+  "app/steps/order.js",
+  "app/steps/pick.js",
+  "app/steps/process.js",
+  "app/steps/quiz.js",
+  "app/steps/read.js",
+  "app/steps/separate.js",
+  "app/steps/test.js",
+  "app/steps/weigh.js",
+  "app/store.js",
+  "app/styles.css",
+  "app/tokens.css",
+  "app/ui/admission.js",
+  "app/ui/controls.js",
+  "app/ui/experiment.js",
+  "app/ui/modal.js",
+  "app/ui/pages.js",
+  "app/ui/reportPage.js",
+  "app/ui/status.js",
+  "labs/lab-00/admission.js",
+  "labs/lab-00/common.js",
+  "labs/lab-00/exp1.js",
+  "labs/lab-00/exp2.js",
+  "labs/lab-00/exp3.js",
+  "labs/lab-00/exp4.js",
+  "labs/lab-00/exp5.js",
+  "labs/lab-00/exp6.js",
+  "labs/lab-00/exp7.js",
+  "labs/lab-00/lab.js",
+  "labs/lab-00/model.js",
+  "labs/lab-00/scene.js",
+  "labs/lab-00/steps/catalog.js",
+  "labs/lab-00/steps/dress.js",
+  "labs/lab-00/steps/spot.js",
+  "labs/lab-06-07/admission.js",
+  "labs/lab-06-07/exp1.js",
+  "labs/lab-06-07/exp2.js",
+  "labs/lab-06-07/exp3.js",
+  "labs/lab-06-07/lab.js",
+  "labs/lab-06-07/model.js",
+  "labs/lab-06-07/scene.js",
+  "labs/lab-08/admission.js",
+  "labs/lab-08/exp3.js",
+  "labs/lab-08/exp4.js",
+  "labs/lab-08/lab.js",
+  "labs/lab-08/model.js",
+  "labs/lab-08/scene.js",
+  "labs/lab-08/steps/balance.js",
+  "labs/lab-08/steps/funnel.js",
+  "labs/lab-08/synthesis.js",
+  "labs/lab-09/admission.js",
+  "labs/lab-09/exp1.js",
+  "labs/lab-09/exp2.js",
+  "labs/lab-09/exp3.js",
+  "labs/lab-09/exp4.js",
+  "labs/lab-09/lab.js",
+  "labs/lab-09/model.js",
+  "labs/lab-09/scene.js",
+  "labs/lab-10/admission.js",
+  "labs/lab-10/exp1.js",
+  "labs/lab-10/exp2.js",
+  "labs/lab-10/exp3.js",
+  "labs/lab-10/exp4.js",
+  "labs/lab-10/exp5.js",
+  "labs/lab-10/exp6.js",
+  "labs/lab-10/exp7.js",
+  "labs/lab-10/exp8.js",
+  "labs/lab-10/lab.js",
+  "labs/lab-10/model.js",
+  "labs/lab-10/scene.js",
+  "labs/lab-10/util.js",
+  "labs/lab-11/admission.js",
+  "labs/lab-11/common.js",
+  "labs/lab-11/exp1.js",
+  "labs/lab-11/exp2.js",
+  "labs/lab-11/exp3.js",
+  "labs/lab-11/exp4.js",
+  "labs/lab-11/exp5.js",
+  "labs/lab-11/exp6.js",
+  "labs/lab-11/lab.js",
+  "labs/lab-11/model.js",
+  "labs/lab-11/scene.js",
+  "labs/lab-12/admission.js",
+  "labs/lab-12/exp1.js",
+  "labs/lab-12/exp2.js",
+  "labs/lab-12/exp3.js",
+  "labs/lab-12/lab.js",
+  "labs/lab-12/model.js",
+  "labs/lab-12/scene.js",
+  "labs/lab-12/steps/polarimeter.js",
+  "labs/lab-13/admission.js",
+  "labs/lab-13/exp1.js",
+  "labs/lab-13/exp2.js",
+  "labs/lab-13/exp3.js",
+  "labs/lab-13/exp4.js",
+  "labs/lab-13/lab.js",
+  "labs/lab-13/model.js",
+  "labs/lab-13/scene.js",
+  "labs/lab-13/steps/chair.js",
+  "labs/lab-13/steps/rotor.js",
+  "labs/lab-13/steps/spectrum.js",
+  "labs/lab-13/steps/stereo.js",
+  "labs/lab-14/admission.js",
+  "labs/lab-14/exp1.js",
+  "labs/lab-14/exp2.js",
+  "labs/lab-14/exp3.js",
+  "labs/lab-14/lab.js",
+  "labs/lab-14/model.js",
+  "labs/lab-14/scene.js",
+  "labs/lab-15/admission.js",
+  "labs/lab-15/common.js",
+  "labs/lab-15/exp1.js",
+  "labs/lab-15/exp2.js",
+  "labs/lab-15/exp3.js",
+  "labs/lab-15/exp4.js",
+  "labs/lab-15/exp5.js",
+  "labs/lab-15/exp6.js",
+  "labs/lab-15/exp7.js",
+  "labs/lab-15/lab.js",
+  "labs/lab-15/model.js",
+  "labs/lab-15/steps/bench.js",
+  "labs/lab-15/steps/record.js",
+  "labs/lab-15/steps/unknown.js",
+  "labs/lab-15/steps/waste.js",
+  "labs/manifest.js",
+  "teacher/",
+  "teacher/index.html",
+  "teacher/app.js",
+  "teacher/client.js",
+  "teacher/csv.js",
+  "teacher/demo.js",
+  "teacher/i18n.js",
+  "teacher/teacher.css"
+];
+
+self.addEventListener('install', (e) => {
+  // cache: 'reload' — мимо HTTP-кэша браузера (GitHub Pages отдаёт файлы с max-age 10 мин), иначе новая версия кэша могла бы набраться старыми файлами.
+  e.waitUntil(caches.open(CACHE).then((c) => Promise.all(CORE.map((u) => c.add(new Request(u, { cache: 'reload' })).catch(() => null)))).then(() => self.skipWaiting()));
+});
+
+self.addEventListener('activate', (e) => {
+  e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
+});
+
+/* Свои файлы и шрифты: сначала кэш, параллельно обновление из сети (stale-while-revalidate).
+   Запросы к серверу преподавателя (POST) не кэшируются. */
+self.addEventListener('fetch', (e) => {
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  const own = url.origin === self.location.origin;
+  const font = /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
+  if (!own && !font) return;
+  // Свои файлы перепроверяются в сети мимо HTTP-кэша браузера.
+  const refresh = () => (own && req.mode !== 'navigate' ? fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }) : fetch(req));
+  // config.js (адрес сервера преподавателя, версия) — сначала сеть: новая настройка действует сразу; без сети — из кэша.
+  if (own && url.pathname.endsWith('/config.js')) {
+    e.respondWith(caches.open(CACHE).then((c) => refresh()
+      .then((res) => { if (res && res.ok) { c.put(req, res.clone()); return res; } return c.match(req, { ignoreSearch: true }).then((hit) => hit || res); })
+      .catch(() => c.match(req, { ignoreSearch: true }).then((hit) => hit || new Response('', { status: 504, statusText: 'offline' })))));
+    return;
+  }
+  e.respondWith(caches.open(CACHE).then(async (c) => {
+    const hit = await c.match(req, { ignoreSearch: own });
+    const net = refresh().then((res) => { if (res && (res.ok || res.type === 'opaque')) c.put(req, res.clone()); return res; }).catch(() => null);
+    return hit || (await net) || new Response('', { status: 504, statusText: 'offline' });
+  }));
+});
